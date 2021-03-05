@@ -3,37 +3,34 @@ import BookShelf from './BookShelf'
 
 class ListBooks extends Component {
 
-    title = "MyReads"
     Shelves = [
-        { 
+        {
             key: 'currentlyReading',
-            value : 'Currently Reading'
+            value: 'Currently Reading'
         },
-        { 
+        {
             key: 'wantToRead',
-            value : 'Want to Read'
+            value: 'Want to Read'
         },
-        { 
+        {
             key: 'read',
-            value : 'Read'
+            value: 'Read'
         }
     ]
-    
+
     render() {
 
         const { books, onUpdateBook } = this.props
-
-        console.log("Books in the list", books)
         return (
             <div className="list-books">
                 <div className="list-books-title">
-                    <h1>{this.title}</h1>
+                    <h1>My Reads</h1>
                 </div>
                 <div className="list-books-content">
                     {this.Shelves.map(shelf => {
                         return (
-                            <BookShelf key={shelf.key} shelf={shelf} 
-                                    books={books} onUpdateBook={onUpdateBook} />
+                            <BookShelf key={shelf.key} shelf={shelf}
+                                books={books} onUpdateBook={onUpdateBook} />
                         )
                     })
                     }
