@@ -38,7 +38,7 @@ class SearchBook extends Component {
                         {this.state.books.length > 0 &&
                             this.state.books.map(
                                 book => (
-                                    <Book key={books.id} book={book}
+                                    <Book key={book.id} book={book}
                                         onUpdateBook={onUpdateBook} />
                                 )
                             )}
@@ -49,4 +49,4 @@ class SearchBook extends Component {
     }
 }
 
-export default SearchBook; 
+export default SearchBook;
