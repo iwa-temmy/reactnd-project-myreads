@@ -1,7 +1,13 @@
 import React, { Component } from 'react'; 
+import PropTypes from 'prop-types';
 import Book from './Book'
 
 class BookShelf extends Component {
+    static propTypes = {
+        books: PropTypes.object.isRequired,
+        onUpdateBook: PropTypes.func.isRequired,
+        shelf : PropTypes.object.isRequired
+    }
 
     render() {
         const {shelf, books, onUpdateBook} = this.props;

@@ -14,11 +14,13 @@ class SearchBook extends Component {
         event.preventDefault();
         this.setState({ query: event.target.value });
 
-        if (this.state.query.length > 0) {
-            BooksAPI.search(this.state.query)
+        if (event.target.value !== '') {
+            BooksAPI.search(event.target.value)
                 .then(books => {
                     this.setState({ books: books });
                 });
+        }else{
+            this.setState({ books: [] });
         }
     }
 
