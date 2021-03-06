@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-class ShelfChanger extends Component{
-    render(){
-        const {shelf, handleChange} = this.props;
+const ShelfChanger=({shelf, handleChange}) => {
     return (
         <div className="book-shelf-changer">
             <select value={shelf} onChange={(event) => {handleChange(event.target.value)}}>
@@ -14,7 +12,6 @@ class ShelfChanger extends Component{
             </select>
         </div>
     );
-    }
 }
 
 export default ShelfChanger;
