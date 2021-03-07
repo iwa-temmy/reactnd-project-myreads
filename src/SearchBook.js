@@ -9,18 +9,20 @@ class SearchBook extends Component {
         query: '',
         books: []
     }
+    baseState = this.state;
 
     handleChange = event => {
         event.preventDefault();
         this.setState({ query: event.target.value });
 
         if (event.target.value !== '') {
+            console.log(event.target.value)
             BooksAPI.search(event.target.value)
                 .then(books => {
                     this.setState({ books: books });
                 });
-        }else{
-            this.setState({ books: [] });
+        } else if (event.target.value === '') {
+            this.setState(this.baseState);
         }
     }
 

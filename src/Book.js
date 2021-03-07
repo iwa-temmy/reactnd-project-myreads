@@ -27,7 +27,9 @@ class Book extends Component {
                     <div className="book-top">
                         <div className="book-cover" style={
                             { width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }
-                        }></div>
+                        }>
+
+                        </div>
                         <ShelfChanger handleChange={this.handleChange} shelf={book.shelf} />
                     </div>
                     <div className="book-title">{book.title}</div>
