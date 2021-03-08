@@ -47,7 +47,7 @@ class BooksApp extends React.Component {
                 onUpdateBook={this.updateBook} />
         </Route>
         <Route path="/search">
-            <SearchBook onUpdateBook={this.updateBook}/>
+            <SearchBook books={this.state.books} onUpdateBook={this.updateBook}/>
         </Route>
         <div className="open-search">
         <Link to="/search">
