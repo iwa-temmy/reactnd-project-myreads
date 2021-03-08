@@ -28,6 +28,7 @@ class SearchBook extends Component {
 
     render() {
         const { onUpdateBook } = this.props;
+        console.log(this.state.books)
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -45,7 +46,8 @@ class SearchBook extends Component {
                                     <Book key={book.id} book={book}
                                         onUpdateBook={onUpdateBook} />
                                 )
-                            )}
+                            )
+                            }
                     </ol>
                 </div>
             </div>

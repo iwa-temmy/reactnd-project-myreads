@@ -19,14 +19,19 @@ class Book extends Component {
         }
     }
 
+
+
     render() {
         const { book } = this.props
+        let imageURL = book && book.imageLinks ? book.imageLinks.thumbnail : "white";
+        console.log(book.shelf)
+
         return (
             <li>
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={
-                            { width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }
+                        <div className="book-cover" id='cover' style={
+                            { width: 128, height: 193, background: `url(${imageURL})` }
                         }>
 
                         </div>
