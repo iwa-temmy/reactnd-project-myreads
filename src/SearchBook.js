@@ -20,8 +20,9 @@ class SearchBook extends Component {
                 .then(books => {
                     if(books !== this.state.books){
                         books.forEach(function(book){
-                            return book.shelf = 'read';
+                            return book.shelf = 'none';
                         })
+
                     }
                     this.setState({ books: books });
                     console.log(books)
