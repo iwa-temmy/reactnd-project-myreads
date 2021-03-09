@@ -16,10 +16,15 @@ class SearchBook extends Component {
         this.setState({ query: event.target.value });
 
         if (event.target.value !== '') {
-            console.log(event.target.value)
             BooksAPI.search(event.target.value)
                 .then(books => {
+                    if(books !== this.state.books){
+                        books.forEach(function(book){
+                            return book.shelf = 'read';
+                        })
+                    }
                     this.setState({ books: books });
+                    console.log(books)
                 });
         } else if (event.target.value === '') {
             this.setState(this.baseState);
@@ -43,7 +48,7 @@ class SearchBook extends Component {
                             this.state.books.map(
                                 book => (
                                     <Book key={book.id} book={book}
-                                        onUpdateBook={onUpdateBook}/>
+                                        onUpdateBook={onUpdateBook} onUpdateShelf={this.onUpdateShelf} />
                                 )
                             )
                             }

@@ -15,18 +15,24 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    books: []
+    books: [],
+    bookShelf: []
   }
 
   componentDidMount() {
 
     BooksAPI.getAll()
       .then( books => {
-        console.log("books from BookApi", books)
+        const booksShelf = books.reduce((shelf, book) => {
+          shelf[book.title] = book.shelf;
+          return shelf;
+        }, {})
         this.setState({books:books})
+        this.setState({bookShelf: booksShelf})
       }); 
-    console.log("Books", this.state.books); 
+      
   }
+  
 
   updateBook = (book, newShelf) => {
     BooksAPI.update(book, newShelf)

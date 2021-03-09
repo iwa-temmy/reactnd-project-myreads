@@ -24,7 +24,6 @@ class Book extends Component {
     render() {
         const { book } = this.props
         let imageURL = book && book.imageLinks ? book.imageLinks.thumbnail : "white";
-        console.log(book.shelf)
 
         return (
             <li>
