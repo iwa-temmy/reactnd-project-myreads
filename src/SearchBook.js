@@ -11,26 +11,31 @@ class SearchBook extends Component {
     }
     baseState = this.state;
 
-    handleChange = event => {
-        event.preventDefault();
-        this.setState({ query: event.target.value });
+handleChange = event => {
+    event.preventDefault();
+    this.setState({ query: event.target.value });
 
-        if (event.target.value !== '') {
-            BooksAPI.search(event.target.value)
-                .then(books => {
-                    if(books !== this.state.books){
-                        books.forEach(function(book){
-                            return book.shelf = 'none';
+    if (event.target.value !== '') {
+        BooksAPI.search(event.target.value)
+            .then(books => {
+                if(!!books){
+                    if(books.length>0){
+                        const results = books.map(book => {
+                            const existingBook = this.props.books.find((b) => b.id === book.id)
+                            console.log(this.props.books, books);
+                            book.shelf = !!existingBook ? existingBook.shelf : 'none'
+                            return book
                         })
-
+                        this.setState({ books: results });
+                    } else {
+                        this.setState({books: []})
                     }
-                    this.setState({ books: books });
-                    console.log(books)
-                });
-        } else if (event.target.value === '') {
-            this.setState(this.baseState);
-        }
+                }
+            });
+    } else if (event.target.value === '') {
+        this.setState(this.baseState);
     }
+}
 
     render() {
         const { onUpdateBook } = this.props;
@@ -40,7 +45,7 @@ class SearchBook extends Component {
                     <Link to="/"
                         className="close-search" >Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" value={this.state.query} onChange={this.handleChange} placeholder="Search by title or author" />
+                        <input autoFocus type="text" value={this.state.query} onChange={this.handleChange} placeholder="Search by title or author" />
                     </div>
                 </div>
                 <div className="search-books-results">
